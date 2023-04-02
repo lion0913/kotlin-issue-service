@@ -4,6 +4,7 @@ import fastcampus.issueservice.config.AuthUser
 import fastcampus.issueservice.domain.enums.IssueStatus
 import fastcampus.issueservice.domain.model.IssueRequest
 import fastcampus.issueservice.domain.service.IssueService
+import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -36,4 +37,12 @@ class IssueController(
         @RequestBody request: IssueRequest,
     ) = issueService.edit(authUser.userId, id, request)
 
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT) //리소스 삭제 성공 시 204 NOcontent 상태 코드로 응답
+    fun delete(
+        authUser: AuthUser,
+        @PathVariable id: Long,
+    ) {
+        issueService.delete(id)
+    }
 }
