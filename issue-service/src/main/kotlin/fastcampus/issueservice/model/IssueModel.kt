@@ -30,6 +30,7 @@ data class IssueResponse (
     val updatedAt: LocalDateTime?,
 ) {
     companion object{
+        //operator invoke방식을 사용한 dto 변환(1)
         operator fun invoke(issue: Issue) =
 
             //with를 사용해서 issue가 this가 되었음 -> this를 사용하지 않고 갖다쓰기 가능

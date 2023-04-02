@@ -22,4 +22,4 @@ class Comment (
     @Column
     val body: String,
 
-)
+): BaseEntity()
