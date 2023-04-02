@@ -2,10 +2,12 @@ package fastcampus.issueservice.domain.service
 
 import fastcampus.issueservice.domain.Issue
 import fastcampus.issueservice.domain.IssueRepository
+import fastcampus.issueservice.domain.enums.IssueStatus
 import fastcampus.issueservice.domain.model.IssueRequest
 import fastcampus.issueservice.domain.model.IssueResponse
-import jakarta.transaction.Transactional
+
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 class IssueService(
@@ -26,4 +28,10 @@ class IssueService(
         // companion을 이용해 of를 사용하지 않고 바로 생성자처럼 사용 가능
         return IssueResponse(issueRepository.save(issue))
     }
+
+    @Transactional(readOnly = true)
+    fun getAll(status: IssueStatus) =
+        issueRepository.findAllByStatusOrderByCreatedAtDesc(status)
+            ?.map {IssueResponse(it)}
+        //map을 이용해 issue가 IssuerResponse type으로 변환이 된다
 }
