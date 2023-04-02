@@ -1,4 +1,4 @@
-package fastcampus.issueservice.domain.model
+package fastcampus.issueservice.model
 
 import com.fasterxml.jackson.annotation.JsonFormat
 import fastcampus.issueservice.domain.Issue

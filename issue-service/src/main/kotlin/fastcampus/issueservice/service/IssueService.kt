@@ -1,10 +1,10 @@
-package fastcampus.issueservice.domain.service
+package fastcampus.issueservice.service
 
 import fastcampus.issueservice.domain.Issue
 import fastcampus.issueservice.domain.IssueRepository
 import fastcampus.issueservice.domain.enums.IssueStatus
-import fastcampus.issueservice.domain.model.IssueRequest
-import fastcampus.issueservice.domain.model.IssueResponse
+import fastcampus.issueservice.model.IssueRequest
+import fastcampus.issueservice.model.IssueResponse
 import fastcampus.issueservice.exception.NotFoundException
 import org.springframework.data.repository.findByIdOrNull
 
@@ -34,7 +34,7 @@ class IssueService(
     @Transactional(readOnly = true)
     fun getAll(status: IssueStatus) =
         issueRepository.findAllByStatusOrderByCreatedAtDesc(status)
-            ?.map {IssueResponse(it)} //map을 이용해 issue가 IssuerResponse type으로 변환이 된다
+            ?.map { IssueResponse(it) } //map을 이용해 issue가 IssuerResponse type으로 변환이 된다
 
     @Transactional(readOnly = true)
     fun get(id: Long): IssueResponse {

@@ -1,9 +1,9 @@
-package fastcampus.issueservice.domain.web
+package fastcampus.issueservice.web
 
 import fastcampus.issueservice.config.AuthUser
 import fastcampus.issueservice.domain.enums.IssueStatus
-import fastcampus.issueservice.domain.model.IssueRequest
-import fastcampus.issueservice.domain.service.IssueService
+import fastcampus.issueservice.model.IssueRequest
+import fastcampus.issueservice.service.IssueService
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
