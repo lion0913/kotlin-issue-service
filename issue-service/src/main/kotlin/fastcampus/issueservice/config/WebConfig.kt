@@ -40,7 +40,6 @@ class AuthUserHandlerArgumentResolver : HandlerMethodArgumentResolver {
         return AuthUser( // 현재는 더미유저 사용
             userId = 1,
             username = "테스트",
-
         )
     }
 }

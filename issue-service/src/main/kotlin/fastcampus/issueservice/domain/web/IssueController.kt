@@ -4,12 +4,7 @@ import fastcampus.issueservice.config.AuthUser
 import fastcampus.issueservice.domain.enums.IssueStatus
 import fastcampus.issueservice.domain.model.IssueRequest
 import fastcampus.issueservice.domain.service.IssueService
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/v1/issues")
@@ -27,4 +22,18 @@ class IssueController(
         authUser: AuthUser,
         @RequestParam(required = false, defaultValue = "TODO") status: IssueStatus,
     ) = issueService.getAll(status)
+
+    @GetMapping("/{id}")
+    fun get(
+        authUser: AuthUser,
+        @PathVariable id: Long,
+    ) = issueService.get(id)
+
+    @PutMapping("/{id}")
+    fun edit(
+        authUser: AuthUser,
+        @PathVariable id: Long,
+        @RequestBody request: IssueRequest,
+    ) = issueService.edit(authUser.userId, id, request)
+
 }
